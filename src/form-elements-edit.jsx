@@ -438,7 +438,7 @@ export default class FormElementsEdit extends React.Component {
               <div className="form-group" key={c_option.name}>
                 <label className="control-label">{c_option.label}</label>
                 <Select
-                  isMulti={c_option.isMulti || false}
+                  multi={c_option.multi || false}
                   id={c_option.name}
                   options={c_option.options}
                   value={
