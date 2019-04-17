@@ -731,11 +731,17 @@ class Tags extends React.Component {
     this.inputField = React.createRef();
   }
 
+  getDefaultValue = () => {
+    if(this.props.defaultValue !== undefined){
+      let selectedValues = this.props.defaultValue.split(',');
+      return this.props.data.options.filter(({label, value}) => selectedValues.includes(value));
+    } else {
+      return [];
+    }
+  }
+
   state = {
-    value:
-      this.props.defaultValue !== undefined
-        ? this.props.defaultValue.split(',')
-        : [],
+    value: this.getDefaultValue()
   };
 
   handleChange = e => {
@@ -753,7 +759,7 @@ class Tags extends React.Component {
     });
 
     let props = {};
-    props.multi = true;
+    props.isMulti = true;
     props.name = this.props.data.field_name;
     props.onChange = this.handleChange;
 
@@ -767,7 +773,7 @@ class Tags extends React.Component {
     }
 
     if (this.props.read_only) {
-      props.disabled = true;
+      props.isDisabled = true;
     }
 
     let baseClasses = 'SortableItem rfb-item';
