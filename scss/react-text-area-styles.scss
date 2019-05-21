@@ -1,0 +1,33 @@
+$positiveSentimentColor: #28a745;
+$negativeSentimentColor: #dc3545;
+$neutralSentimentColor: #ffc107;
+
+.form-text-area-sentiment {
+  margin: 0 10px;
+  .sentimental-dot {
+    display: inline-block;
+    margin-right: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  &.positive {
+    color: $positiveSentimentColor;
+    .sentimental-dot {
+      background-color: $positiveSentimentColor;
+    }
+  }
+  &.negative {
+    color: $negativeSentimentColor;
+    .sentimental-dot {
+      background-color: $negativeSentimentColor;
+    }
+  }
+  &.neutral {
+    color: $neutralSentimentColor;
+    .sentimental-dot {
+      background-color: $neutralSentimentColor;
+    }
+  }
+}

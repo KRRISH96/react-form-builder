@@ -350,6 +350,13 @@ class TextArea extends React.Component {
       baseClasses += ' alwaysbreak';
     }
 
+    let sentimentalClass = '';
+    const isSentimentAdded = !!this.props.data.sentiment && !!this.props.data.sentiment.label;
+
+    if (isSentimentAdded) {
+      sentimentalClass = `${this.props.data.sentiment.label.toLowerCase()}`
+    }
+
     return (
       <div className={baseClasses}>
         {!this.props.mutable && (
@@ -382,6 +389,13 @@ class TextArea extends React.Component {
                   Required
                 </span>
               )}
+              {
+                isSentimentAdded && (
+                  <span className={`form-text-area-sentiment ${sentimentalClass}`}><span className="sentimental-dot" />
+                    &nbsp;{`${this.props.data.sentiment.label} (${this.props.data.sentiment.score})`}
+                  </span>
+                )
+              }
           </label>
           <textarea {...props} />
         </div>
