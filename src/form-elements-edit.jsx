@@ -3,12 +3,7 @@ import DynamicOptionList from './dynamic-option-list';
 import TextAreaAutosize from 'react-textarea-autosize';
 import Select from 'react-select';
 
-import {
-  ContentState,
-  convertFromHTML,
-  convertToRaw,
-  EditorState,
-} from 'draft-js';
+import { ContentState, convertFromHTML, convertToRaw, EditorState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { Editor } from 'react-draft-wysiwyg';
 
@@ -61,9 +56,7 @@ export default class FormElementsEdit extends React.Component {
     if (values === undefined || values === null || values === '') {
       this_element[elemProperty] = '';
     } else {
-      this_element[elemProperty] = Array.isArray(values)
-        ? values.map(v => v.value)
-        : values.value;
+      this_element[elemProperty] = Array.isArray(values) ? values.map(v => v.value) : values.value;
     }
     this.setState(
       {
@@ -130,22 +123,15 @@ export default class FormElementsEdit extends React.Component {
     let this_checked_center = this.props.element.hasOwnProperty('center')
       ? this.props.element.center
       : false;
-    let this_checked_page_break = this.props.element.hasOwnProperty(
-      'pageBreakBefore',
-    )
+    let this_checked_page_break = this.props.element.hasOwnProperty('pageBreakBefore')
       ? this.props.element.pageBreakBefore
       : false;
-    let this_checked_alternate_form = this.props.element.hasOwnProperty(
-      'alternateForm',
-    )
+    let this_checked_alternate_form = this.props.element.hasOwnProperty('alternateForm')
       ? this.props.element.alternateForm
       : false;
 
     let this_files = this.props.files.length ? this.props.files : [];
-    if (
-      this_files.length < 1 ||
-      (this_files.length > 0 && this_files[0].id !== '')
-    ) {
+    if (this_files.length < 1 || (this_files.length > 0 && this_files[0].id !== '')) {
       this_files.unshift({
         id: '',
         file_name: '',
@@ -177,11 +163,7 @@ export default class FormElementsEdit extends React.Component {
               toolbar={toolbar}
               defaultEditorState={editorState}
               onBlur={this.updateElement.bind(this)}
-              onEditorStateChange={this.onEditorStateChange.bind(
-                this,
-                0,
-                'content',
-              )}
+              onEditorStateChange={this.onEditorStateChange.bind(this, 0, 'content')}
             />
           </div>
         )}
@@ -197,7 +179,7 @@ export default class FormElementsEdit extends React.Component {
               onBlur={this.updateElement.bind(this)}
               onChange={this.editElementProp.bind(this, 'file_path', 'value')}
             >
-              {this_files.map(function (file) {
+              {this_files.map(function(file) {
                 let this_key = 'file_' + file.id;
                 return (
                   <option value={file.id} key={this_key}>
@@ -242,11 +224,7 @@ export default class FormElementsEdit extends React.Component {
                     type="checkbox"
                     checked={this_checked_center}
                     value={true}
-                    onChange={this.editElementProp.bind(
-                      this,
-                      'center',
-                      'checked',
-                    )}
+                    onChange={this.editElementProp.bind(this, 'center', 'checked')}
                   />
                   Center?
                 </label>
@@ -289,11 +267,7 @@ export default class FormElementsEdit extends React.Component {
               toolbar={toolbar}
               defaultEditorState={editorState}
               onBlur={this.updateElement.bind(this)}
-              onEditorStateChange={this.onEditorStateChange.bind(
-                this,
-                0,
-                'label',
-              )}
+              onEditorStateChange={this.onEditorStateChange.bind(this, 0, 'label')}
             />
 
             <br />
@@ -303,11 +277,7 @@ export default class FormElementsEdit extends React.Component {
                   type="checkbox"
                   checked={this_checked}
                   value={true}
-                  onChange={this.editElementProp.bind(
-                    this,
-                    'required',
-                    'checked',
-                  )}
+                  onChange={this.editElementProp.bind(this, 'required', 'checked')}
                 />
                 Required
               </label>
@@ -319,11 +289,7 @@ export default class FormElementsEdit extends React.Component {
                     type="checkbox"
                     checked={this_read_only}
                     value={true}
-                    onChange={this.editElementProp.bind(
-                      this,
-                      'readOnly',
-                      'checked',
-                    )}
+                    onChange={this.editElementProp.bind(this, 'readOnly', 'checked')}
                   />
                   Read only
                 </label>
@@ -336,11 +302,7 @@ export default class FormElementsEdit extends React.Component {
                     type="checkbox"
                     checked={this_default_today}
                     value={true}
-                    onChange={this.editElementProp.bind(
-                      this,
-                      'defaultToday',
-                      'checked',
-                    )}
+                    onChange={this.editElementProp.bind(this, 'defaultToday', 'checked')}
                   />
                   Default to Today?
                 </label>
@@ -348,47 +310,42 @@ export default class FormElementsEdit extends React.Component {
             )}
             {(this.state.element.element === 'RadioButtons' ||
               this.state.element.element === 'Checkboxes') && (
-                <div className="checkbox">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={this_checked_inline}
-                      value={true}
-                      onChange={this.editElementProp.bind(
-                        this,
-                        'inline',
-                        'checked',
-                      )}
-                    />
-                    Display horizonal
+              <div className="checkbox">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={this_checked_inline}
+                    value={true}
+                    onChange={this.editElementProp.bind(this, 'inline', 'checked')}
+                  />
+                  Display horizonal
                 </label>
-                </div>
-              )}
+              </div>
+            )}
           </div>
         )}
 
-        {this.state.element.element === 'Signature' &&
-          this.props.element.readOnly ? (
-            <div className="form-group">
-              <label className="control-label" htmlFor="variableKey">
-                Variable Key:
+        {this.state.element.element === 'Signature' && this.props.element.readOnly ? (
+          <div className="form-group">
+            <label className="control-label" htmlFor="variableKey">
+              Variable Key:
             </label>
-              <input
-                id="variableKey"
-                type="text"
-                className="form-control"
-                defaultValue={this.props.element.variableKey}
-                onBlur={this.updateElement.bind(this)}
-                onChange={this.editElementProp.bind(this, 'variableKey', 'value')}
-              />
-              <p className="help-block">
-                This will give the element a key that can be used to replace the
-                content with a runtime value.
+            <input
+              id="variableKey"
+              type="text"
+              className="form-control"
+              defaultValue={this.props.element.variableKey}
+              onBlur={this.updateElement.bind(this)}
+              onChange={this.editElementProp.bind(this, 'variableKey', 'value')}
+            />
+            <p className="help-block">
+              This will give the element a key that can be used to replace the content with a
+              runtime value.
             </p>
-            </div>
-          ) : (
-            <div />
-          )}
+          </div>
+        ) : (
+          <div />
+        )}
 
         {(this.props.element.custom_options || []).map(c_option => {
           if (c_option.type === 'input') {
@@ -401,19 +358,13 @@ export default class FormElementsEdit extends React.Component {
                   id={c_option.name}
                   type="text"
                   className="form-control"
-                  defaultValue={
-                    this.props.element[c_option.name] || c_option.defaultValue
-                  }
+                  defaultValue={this.props.element[c_option.name] || c_option.defaultValue}
                   onBlur={this.updateElement.bind(this)}
-                  onChange={this.editElementProp.bind(
-                    this,
-                    c_option.name,
-                    'value',
-                  )}
+                  onChange={this.editElementProp.bind(this, c_option.name, 'value')}
                 />
               </div>
             );
-          } else if(c_option.type === 'textarea') {
+          } else if (c_option.type === 'textarea') {
             return (
               <div className="form-group" key={c_option.name}>
                 <label className="control-label" htmlFor={c_option.name}>
@@ -437,11 +388,7 @@ export default class FormElementsEdit extends React.Component {
                   isMulti={c_option.isMulti || false}
                   id={c_option.name}
                   options={c_option.options}
-                  value={
-                    this.props.element[c_option.name] ||
-                    c_option.defaultValue ||
-                    ''
-                  }
+                  value={this.props.element[c_option.name] || c_option.defaultValue || ''}
                   onBlur={this.updateElement.bind(this)}
                   onChange={this.editSelectProp.bind(this, c_option.name)}
                 />
@@ -454,17 +401,9 @@ export default class FormElementsEdit extends React.Component {
                   <label>
                     <input
                       type="checkbox"
-                      checked={
-                        this.props.element[c_option.name] ||
-                        c_option.defaultvalue ||
-                        false
-                      }
+                      checked={this.props.element[c_option.name] || c_option.defaultvalue || false}
                       value={true}
-                      onChange={this.editElementProp.bind(
-                        this,
-                        c_option.name,
-                        'checked',
-                      )}
+                      onChange={this.editElementProp.bind(this, c_option.name, 'checked')}
                     />
                     {c_option.label}
                   </label>
@@ -482,11 +421,7 @@ export default class FormElementsEdit extends React.Component {
                 type="checkbox"
                 checked={this_checked_page_break}
                 value={true}
-                onChange={this.editElementProp.bind(
-                  this,
-                  'pageBreakBefore',
-                  'checked',
-                )}
+                onChange={this.editElementProp.bind(this, 'pageBreakBefore', 'checked')}
               />
               Page Break Before Element?
             </label>
@@ -501,11 +436,7 @@ export default class FormElementsEdit extends React.Component {
                 type="checkbox"
                 checked={this_checked_alternate_form}
                 value={true}
-                onChange={this.editElementProp.bind(
-                  this,
-                  'alternateForm',
-                  'checked',
-                )}
+                onChange={this.editElementProp.bind(this, 'alternateForm', 'checked')}
               />
               Display on alternate/signature Page?
             </label>
@@ -589,51 +520,38 @@ export default class FormElementsEdit extends React.Component {
                 className="form-control"
                 defaultValue={this.props.element.default_value}
                 onBlur={this.updateElement.bind(this)}
-                onChange={this.editElementProp.bind(
-                  this,
-                  'default_value',
-                  'value',
-                )}
+                onChange={this.editElementProp.bind(this, 'default_value', 'value')}
               />
             </div>
           </div>
         )}
-        {this.props.element.hasOwnProperty('static') &&
-          this.props.element.static && (
-            <div className="form-group">
-              <label className="control-label">Text Style</label>
-              <div className="checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={this_checked_bold}
-                    value={true}
-                    onChange={this.editElementProp.bind(
-                      this,
-                      'bold',
-                      'checked',
-                    )}
-                  />
-                  Bold
-                </label>
-              </div>
-              <div className="checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={this_checked_italic}
-                    value={true}
-                    onChange={this.editElementProp.bind(
-                      this,
-                      'italic',
-                      'checked',
-                    )}
-                  />
-                  Italic
-                </label>
-              </div>
+        {this.props.element.hasOwnProperty('static') && this.props.element.static && (
+          <div className="form-group">
+            <label className="control-label">Text Style</label>
+            <div className="checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={this_checked_bold}
+                  value={true}
+                  onChange={this.editElementProp.bind(this, 'bold', 'checked')}
+                />
+                Bold
+              </label>
             </div>
-          )}
+            <div className="checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={this_checked_italic}
+                  value={true}
+                  onChange={this.editElementProp.bind(this, 'italic', 'checked')}
+                />
+                Italic
+              </label>
+            </div>
+          </div>
+        )}
 
         {this.props.showCorrectColumn &&
           this.props.element.canHaveAnswer &&
