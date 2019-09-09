@@ -385,19 +385,17 @@ class TextArea extends React.Component {
             {this.props.data.hasOwnProperty('required') &&
               this.props.data.required === true &&
               !this.props.read_only && (
-                <span className="label-required label label-danger">
-                  Required
-                </span>
+                <span className="label-required label label-danger">Required</span>
               )}
-              {
-                isSentimentAdded && (
-                  <span className={`form-text-area-sentiment ${sentimentalClass}`}><span className="sentimental-dot" />
-                    &nbsp;{`${this.props.data.sentiment.label} (${this.props.data.sentiment.score}) Net Sentiment Score`}
-                  </span>
-                )
-              }
+            {isSentimentAdded && (
+              <span className={`form-text-area-sentiment ${sentimentalClass}`}>
+                <span className="sentimental-dot" />
+                &nbsp;
+                {`${this.props.data.sentiment.label} (${this.props.data.sentiment.score}) Net Sentiment Score`}
+              </span>
+            )}
           </label>
-          <textarea {...props} />
+          <textarea {...props} rows="8" />
         </div>
       </div>
     );

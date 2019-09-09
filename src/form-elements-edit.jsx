@@ -212,6 +212,7 @@ export default class FormElementsEdit extends React.Component {
           <div className="form-group">
             <TextAreaAutosize
               type="text"
+              minRows={8}
               className="form-control"
               defaultValue={this.props.element.href}
               onBlur={this.updateElement.bind(this)}
@@ -421,15 +422,10 @@ export default class FormElementsEdit extends React.Component {
                 <textarea
                   id={c_option.name}
                   className="form-control"
-                  defaultValue={
-                    this.props.element[c_option.name] || c_option.defaultValue
-                  }
+                  rows="8"
+                  defaultValue={this.props.element[c_option.name] || c_option.defaultValue}
                   onBlur={this.updateElement.bind(this)}
-                  onChange={this.editElementProp.bind(
-                    this,
-                    c_option.name,
-                    'value',
-                  )}
+                  onChange={this.editElementProp.bind(this, c_option.name, 'value')}
                 />
               </div>
             );
